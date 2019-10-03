@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Navigation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Navigation</h2>
+<h2>Please Select a Suitable Option </h2>
+<div>
+
+     @*Add a Sponsor Or Edit Sponsor*@
+    <a href="@Url.Action("Create","Sponsors")">Add a Sponsor</a> <br />
+    <a href="@Url.Action("Index","Sponsors")">Sponsor Information</a> <br /><br />
+  
+      @*Add a Donee Or Edit Donee*@
+    <a href="@Url.Action("Create", "Donees")">Add a Donee</a><br />
+    <a href="@Url.Action("Index", "Donees")">Donee Information</a><br /><br />
+   
+     @*Add a Statioary Or Edit Stationary*@
+    <a href="@Url.Action("Create", "Stationaries")">Add a Stationary donation</a><br />
+    <a href="@Url.Action("Index", "Stationaries")">Stationary Information</a><br /><br />
+          
+            @*Add a Book Or Edit Book*@
+    <a href="@Url.Action("Create", "Books")">Add a Book donation </a><br />
+    <a href="@Url.Action("Index", "Books")">Book Information </a><br /><br />
+          
+      @*Add a Courier Or Edit a Courier*@
+    @*<a href="@Url.Action("Create", "Books")">Add a stationary donation<</a>br /><br />
+    <a href="@Url.Action("Edit", "Books")">Edit a stationary donation</a><br /><br /><br /><br /><br />*@
+</div>
+
+<div>
+    <h2>My Employee Details</h2>
+    <br /><br />
+  
+    @*Add  Or Edit your Employee Detials*@
+    <a href="@Url.Action("Create", "Employees")">Add Employee Details</a><br />
+    <a href="@Url.Action("Index", "Employees")">Employee Details</a><br /><br />
+</div>
+
+<div>
+    <h2>Generate Monthly Report</h2>
+    @*<br /><br />
+    @Html.ActionLink("Add my Employee Detials", "AddEmployee")<br /><br />*@
+   </div>
+
+

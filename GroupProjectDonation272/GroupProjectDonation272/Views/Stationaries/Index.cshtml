@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GroupProjectDonation272.Models.Stationary>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StationaryDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Donation.DonationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SponsorType.SponsorTypeDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StationaryDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Donation.DonationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SponsorType.SponsorTypeDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StationaryID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StationaryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StationaryID })
+        </td>
+    </tr>
+}
+
+</table>

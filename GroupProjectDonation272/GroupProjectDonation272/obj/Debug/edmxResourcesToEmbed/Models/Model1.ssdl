@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DonationFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Name="BookID" Type="int" Nullable="false" />
+    <Property Name="BookTitle" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="BookAuthor" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="BookPublisher" Type="varchar" MaxLength="50" />
+    <Property Name="Year" Type="datetime2" Precision="7" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookType">
+    <Key>
+      <PropertyRef Name="BookTypeID" />
+    </Key>
+    <Property Name="BookTypeID" Type="int" Nullable="false" />
+    <Property Name="BookTypeDescription" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Center">
+    <Key>
+      <PropertyRef Name="CenterID" />
+    </Key>
+    <Property Name="CenterID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhysicalAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CenterType">
+    <Key>
+      <PropertyRef Name="CenterTypeID" />
+    </Key>
+    <Property Name="CenterTypeID" Type="int" Nullable="false" />
+    <Property Name="CenterTypeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Courier">
+    <Key>
+      <PropertyRef Name="CourierID" />
+    </Key>
+    <Property Name="CourierID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="varchar" MaxLength="50" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="PhysicalAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourierDelivery1">
+    <Key>
+      <PropertyRef Name="CourierDeliveryID" />
+    </Key>
+    <Property Name="CourierDeliveryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="DeliveryID" />
+    </Key>
+    <Property Name="DeliveryID" Type="int" Nullable="false" />
+    <Property Name="DonationSize" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeliveryStatus">
+    <Key>
+      <PropertyRef Name="DeliveryStatusID" />
+    </Key>
+    <Property Name="DeliveryStatusID" Type="int" Nullable="false" />
+    <Property Name="Delivered" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="InTransit" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Donation">
+    <Key>
+      <PropertyRef Name="DonationID" />
+    </Key>
+    <Property Name="DonationID" Type="int" Nullable="false" />
+    <Property Name="DonationName" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Donee">
+    <Key>
+      <PropertyRef Name="DoneeID" />
+    </Key>
+    <Property Name="DoneeID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhysicalAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="PhysicalAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sponsor">
+    <Key>
+      <PropertyRef Name="SponsorID" />
+    </Key>
+    <Property Name="SponsorID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="PhysicalAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="int" Nullable="false" />
+    <Property Name="DateOfDelivery" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SponsorType">
+    <Key>
+      <PropertyRef Name="SponsorTypeID" />
+    </Key>
+    <Property Name="SponsorTypeID" Type="int" Nullable="false" />
+    <Property Name="SponsorTypeDescription" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stationary">
+    <Key>
+      <PropertyRef Name="StationaryID" />
+    </Key>
+    <Property Name="StationaryID" Type="int" Nullable="false" />
+    <Property Name="StationaryDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StationaryType">
+    <Key>
+      <PropertyRef Name="StationaryTypeID" />
+    </Key>
+    <Property Name="StationaryTypeID" Type="int" Nullable="false" />
+    <Property Name="StationaryTypeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Book_Donation">
+    <End Role="Donation" Type="Self.Donation" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Donation">
+        <PropertyRef Name="DonationID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="BookID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookType_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookType" Type="Self.BookType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="BookID" />
+      </Principal>
+      <Dependent Role="BookType">
+        <PropertyRef Name="BookTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Center_Courier">
+    <End Role="Courier" Type="Self.Courier" Multiplicity="1" />
+    <End Role="Center" Type="Self.Center" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Courier">
+        <PropertyRef Name="CourierID" />
+      </Principal>
+      <Dependent Role="Center">
+        <PropertyRef Name="CenterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CenterType_Center">
+    <End Role="Center" Type="Self.Center" Multiplicity="1" />
+    <End Role="CenterType" Type="Self.CenterType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Center">
+        <PropertyRef Name="CenterID" />
+      </Principal>
+      <Dependent Role="CenterType">
+        <PropertyRef Name="CenterTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courier_CourierDelivery1">
+    <End Role="CourierDelivery1" Type="Self.CourierDelivery1" Multiplicity="1" />
+    <End Role="Courier" Type="Self.Courier" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourierDelivery1">
+        <PropertyRef Name="CourierDeliveryID" />
+      </Principal>
+      <Dependent Role="Courier">
+        <PropertyRef Name="CourierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Delivery_CourierDelivery1">
+    <End Role="CourierDelivery1" Type="Self.CourierDelivery1" Multiplicity="1" />
+    <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourierDelivery1">
+        <PropertyRef Name="CourierDeliveryID" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="DeliveryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Delivery_DeliveryStatus">
+    <End Role="DeliveryStatus" Type="Self.DeliveryStatus" Multiplicity="1" />
+    <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryStatus">
+        <PropertyRef Name="DeliveryStatusID" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="DeliveryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Donee_Donation">
+    <End Role="Donation" Type="Self.Donation" Multiplicity="1" />
+    <End Role="Donee" Type="Self.Donee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Donation">
+        <PropertyRef Name="DonationID" />
+      </Principal>
+      <Dependent Role="Donee">
+        <PropertyRef Name="DoneeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Donation">
+    <End Role="Donation" Type="Self.Donation" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Donation">
+        <PropertyRef Name="DonationID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Sponsor">
+    <End Role="Sponsor" Type="Self.Sponsor" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Sponsor">
+        <PropertyRef Name="SponsorID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SponsorType_Sponsor">
+    <End Role="Sponsor" Type="Self.Sponsor" Multiplicity="1" />
+    <End Role="SponsorType" Type="Self.SponsorType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Sponsor">
+        <PropertyRef Name="SponsorID" />
+      </Principal>
+      <Dependent Role="SponsorType">
+        <PropertyRef Name="SponsorTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SponsorType_Stationary">
+    <End Role="Stationary" Type="Self.Stationary" Multiplicity="1" />
+    <End Role="SponsorType" Type="Self.SponsorType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Stationary">
+        <PropertyRef Name="StationaryID" />
+      </Principal>
+      <Dependent Role="SponsorType">
+        <PropertyRef Name="SponsorTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stationary_Donation">
+    <End Role="Donation" Type="Self.Donation" Multiplicity="1" />
+    <End Role="Stationary" Type="Self.Stationary" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Donation">
+        <PropertyRef Name="DonationID" />
+      </Principal>
+      <Dependent Role="Stationary">
+        <PropertyRef Name="StationaryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DonationFinalModelStoreContainer">
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookType" EntityType="Self.BookType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Center" EntityType="Self.Center" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CenterType" EntityType="Self.CenterType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courier" EntityType="Self.Courier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourierDelivery1" EntityType="Self.CourierDelivery1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeliveryStatus" EntityType="Self.DeliveryStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Donation" EntityType="Self.Donation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Donee" EntityType="Self.Donee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sponsor" EntityType="Self.Sponsor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SponsorType" EntityType="Self.SponsorType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stationary" EntityType="Self.Stationary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StationaryType" EntityType="Self.StationaryType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Book_Donation" Association="Self.FK_Book_Donation">
+      <End Role="Donation" EntitySet="Donation" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookType_Book" Association="Self.FK_BookType_Book">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BookType" EntitySet="BookType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Center_Courier" Association="Self.FK_Center_Courier">
+      <End Role="Courier" EntitySet="Courier" />
+      <End Role="Center" EntitySet="Center" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CenterType_Center" Association="Self.FK_CenterType_Center">
+      <End Role="Center" EntitySet="Center" />
+      <End Role="CenterType" EntitySet="CenterType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courier_CourierDelivery1" Association="Self.FK_Courier_CourierDelivery1">
+      <End Role="CourierDelivery1" EntitySet="CourierDelivery1" />
+      <End Role="Courier" EntitySet="Courier" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Delivery_CourierDelivery1" Association="Self.FK_Delivery_CourierDelivery1">
+      <End Role="CourierDelivery1" EntitySet="CourierDelivery1" />
+      <End Role="Delivery" EntitySet="Delivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Delivery_DeliveryStatus" Association="Self.FK_Delivery_DeliveryStatus">
+      <End Role="DeliveryStatus" EntitySet="DeliveryStatus" />
+      <End Role="Delivery" EntitySet="Delivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Donee_Donation" Association="Self.FK_Donee_Donation">
+      <End Role="Donation" EntitySet="Donation" />
+      <End Role="Donee" EntitySet="Donee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Donation" Association="Self.FK_Employee_Donation">
+      <End Role="Donation" EntitySet="Donation" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Sponsor" Association="Self.FK_Employee_Sponsor">
+      <End Role="Sponsor" EntitySet="Sponsor" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SponsorType_Sponsor" Association="Self.FK_SponsorType_Sponsor">
+      <End Role="Sponsor" EntitySet="Sponsor" />
+      <End Role="SponsorType" EntitySet="SponsorType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SponsorType_Stationary" Association="Self.FK_SponsorType_Stationary">
+      <End Role="Stationary" EntitySet="Stationary" />
+      <End Role="SponsorType" EntitySet="SponsorType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stationary_Donation" Association="Self.FK_Stationary_Donation">
+      <End Role="Donation" EntitySet="Donation" />
+      <End Role="Stationary" EntitySet="Stationary" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

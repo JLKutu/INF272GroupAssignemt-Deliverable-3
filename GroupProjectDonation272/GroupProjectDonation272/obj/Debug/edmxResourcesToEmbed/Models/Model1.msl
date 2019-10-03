@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DonationFinalModelStoreContainer" CdmEntityContainer="DonationFinalEntities1">
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="DonationFinalModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="BookID" ColumnName="BookID" />
+          <ScalarProperty Name="BookTitle" ColumnName="BookTitle" />
+          <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
+          <ScalarProperty Name="BookPublisher" ColumnName="BookPublisher" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookTypes">
+      <EntityTypeMapping TypeName="DonationFinalModel.BookType">
+        <MappingFragment StoreEntitySet="BookType">
+          <ScalarProperty Name="BookTypeID" ColumnName="BookTypeID" />
+          <ScalarProperty Name="BookTypeDescription" ColumnName="BookTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Centers">
+      <EntityTypeMapping TypeName="DonationFinalModel.Center">
+        <MappingFragment StoreEntitySet="Center">
+          <ScalarProperty Name="CenterID" ColumnName="CenterID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CenterTypes">
+      <EntityTypeMapping TypeName="DonationFinalModel.CenterType">
+        <MappingFragment StoreEntitySet="CenterType">
+          <ScalarProperty Name="CenterTypeID" ColumnName="CenterTypeID" />
+          <ScalarProperty Name="CenterTypeDescription" ColumnName="CenterTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Couriers">
+      <EntityTypeMapping TypeName="DonationFinalModel.Courier">
+        <MappingFragment StoreEntitySet="Courier">
+          <ScalarProperty Name="CourierID" ColumnName="CourierID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourierDelivery1">
+      <EntityTypeMapping TypeName="DonationFinalModel.CourierDelivery1">
+        <MappingFragment StoreEntitySet="CourierDelivery1">
+          <ScalarProperty Name="CourierDeliveryID" ColumnName="CourierDeliveryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deliveries">
+      <EntityTypeMapping TypeName="DonationFinalModel.Delivery">
+        <MappingFragment StoreEntitySet="Delivery">
+          <ScalarProperty Name="DeliveryID" ColumnName="DeliveryID" />
+          <ScalarProperty Name="DonationSize" ColumnName="DonationSize" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeliveryStatus">
+      <EntityTypeMapping TypeName="DonationFinalModel.DeliveryStatu">
+        <MappingFragment StoreEntitySet="DeliveryStatus">
+          <ScalarProperty Name="DeliveryStatusID" ColumnName="DeliveryStatusID" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="InTransit" ColumnName="InTransit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donations">
+      <EntityTypeMapping TypeName="DonationFinalModel.Donation">
+        <MappingFragment StoreEntitySet="Donation">
+          <ScalarProperty Name="DonationID" ColumnName="DonationID" />
+          <ScalarProperty Name="DonationName" ColumnName="DonationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donees">
+      <EntityTypeMapping TypeName="DonationFinalModel.Donee">
+        <MappingFragment StoreEntitySet="Donee">
+          <ScalarProperty Name="DoneeID" ColumnName="DoneeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="DonationFinalModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sponsors">
+      <EntityTypeMapping TypeName="DonationFinalModel.Sponsor">
+        <MappingFragment StoreEntitySet="Sponsor">
+          <ScalarProperty Name="SponsorID" ColumnName="SponsorID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SponsorTypes">
+      <EntityTypeMapping TypeName="DonationFinalModel.SponsorType">
+        <MappingFragment StoreEntitySet="SponsorType">
+          <ScalarProperty Name="SponsorTypeID" ColumnName="SponsorTypeID" />
+          <ScalarProperty Name="SponsorTypeDescription" ColumnName="SponsorTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stationaries">
+      <EntityTypeMapping TypeName="DonationFinalModel.Stationary">
+        <MappingFragment StoreEntitySet="Stationary">
+          <ScalarProperty Name="StationaryID" ColumnName="StationaryID" />
+          <ScalarProperty Name="StationaryDescription" ColumnName="StationaryDescription" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StationaryTypes">
+      <EntityTypeMapping TypeName="DonationFinalModel.StationaryType">
+        <MappingFragment StoreEntitySet="StationaryType">
+          <ScalarProperty Name="StationaryTypeID" ColumnName="StationaryTypeID" />
+          <ScalarProperty Name="StationaryTypeDescription" ColumnName="StationaryTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DonationFinalModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,51 @@
+﻿@model GroupProjectDonation272.Models.Stationary
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Stationary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StationaryDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StationaryDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Donation.DonationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Donation.DonationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SponsorType.SponsorTypeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsorType.SponsorTypeDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StationaryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

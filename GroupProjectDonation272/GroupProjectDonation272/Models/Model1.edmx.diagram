@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ef5451df8584369b0a95f7ef3085f8c" Name="Diagram1">
+        <EntityTypeShape EntityType="DonationFinalModel.Book" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.BookType" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Center" Width="1.5" PointX="13.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.CenterType" Width="1.5" PointX="15.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Courier" Width="1.5" PointX="11" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.CourierDelivery1" Width="1.5" PointX="8.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Delivery" Width="1.5" PointX="11" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.DeliveryStatu" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Donation" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Donee" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Employee" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Sponsor" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.SponsorType" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.Stationary" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.StationaryType" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonationFinalModel.User" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="DonationFinalModel.FK_Book_Donation" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_BookType_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Center_Courier" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_CenterType_Center" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Courier_CourierDelivery1" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Delivery_CourierDelivery1" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Delivery_DeliveryStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Donee_Donation" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Employee_Donation" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Stationary_Donation" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Employee_Sponsor" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_Employee_User" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_SponsorType_Sponsor" ManuallyRouted="false" />
+        <AssociationConnector Association="DonationFinalModel.FK_SponsorType_Stationary" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
