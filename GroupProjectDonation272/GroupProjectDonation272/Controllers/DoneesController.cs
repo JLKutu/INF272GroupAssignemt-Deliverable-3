@@ -18,6 +18,8 @@ namespace GroupProjectDonation272.Controllers
         public ActionResult Index()
         {
             var donees = db.Donees.Include(d => d.Donation);
+            var donees=db.Donees.OrderByDesceding(d=>d.Doation);
+            var donees=db.Donee.OrderBy(d=>d.DonationID);
             return View(donees.ToList());
         }
 
