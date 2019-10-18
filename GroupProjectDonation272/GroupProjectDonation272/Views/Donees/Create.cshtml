@@ -9,6 +9,8 @@
 
 @using (Html.BeginForm()) 
 {
+
+    @Html.ActionLink("Home", "Index")
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
