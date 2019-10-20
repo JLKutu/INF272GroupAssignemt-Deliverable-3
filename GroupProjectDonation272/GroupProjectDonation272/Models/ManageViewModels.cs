@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace SDG_Education.Models
+namespace GroupProjectDonation272.Models
 {
     public class IndexViewModel
     {
