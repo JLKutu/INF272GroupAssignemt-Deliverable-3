@@ -139,3 +139,6 @@ F:\GroupProjectDonation272\GroupProjectDonation272\GroupProjectDonation272\obj\D
 E:\GroupProjectDonation272\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.csprojResolveAssemblyReference.cache
 E:\GroupProjectDonation272\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.dll
 E:\GroupProjectDonation272\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.pdb
+C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.csprojResolveAssemblyReference.cache
+C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.dll
+C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.pdb
