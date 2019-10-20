@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace SDG_Education.Models.Core
+namespace GroupProjectDonation272.Models.Core
 {
     public class BookType
     {

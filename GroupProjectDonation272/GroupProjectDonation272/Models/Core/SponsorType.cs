@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SDG_Education.Models.Core
+namespace GroupProjectDonation272.Models.Core
 {
     public class SponsorType
     {
