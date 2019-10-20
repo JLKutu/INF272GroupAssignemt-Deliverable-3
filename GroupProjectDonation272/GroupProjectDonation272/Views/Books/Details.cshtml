@@ -1,8 +1,7 @@
-﻿@model GroupProjectDonation272.Models.Book
+﻿@model SDG_Education.Models.Core.Book
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -12,27 +11,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BookTitle)
+            @Html.DisplayNameFor(model => model.BookType.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookTitle)
+            @Html.DisplayFor(model => model.BookType.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BookAuthor)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookAuthor)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BookPublisher)
+            @Html.DisplayNameFor(model => model.Author)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookPublisher)
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publisher)
         </dd>
 
         <dt>
@@ -43,33 +58,9 @@
             @Html.DisplayFor(model => model.Year)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Donation.DonationName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Donation.DonationName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BookType.BookTypeDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BookType.BookTypeDescription)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

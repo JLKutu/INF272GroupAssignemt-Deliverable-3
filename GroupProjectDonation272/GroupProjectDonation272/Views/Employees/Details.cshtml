@@ -1,8 +1,7 @@
-﻿@model GroupProjectDonation272.Models.Employee
+﻿@model SDG_Education.Models.Core.Employee
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -12,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Center.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Center.Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -20,64 +27,40 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
+            @Html.DisplayNameFor(model => model.Code)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
+            @Html.DisplayFor(model => model.Code)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PhysicalAddress)
+            @Html.DisplayNameFor(model => model.ContactNo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhysicalAddress)
+            @Html.DisplayFor(model => model.ContactNo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ContactNumber)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ContactNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Donation.DonationName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Donation.DonationName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sponsor.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sponsor.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.Username)
+            @Html.DisplayFor(model => model.Address)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

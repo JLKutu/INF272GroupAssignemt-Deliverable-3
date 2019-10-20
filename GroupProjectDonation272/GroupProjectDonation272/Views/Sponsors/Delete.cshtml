@@ -1,8 +1,7 @@
-﻿@model GroupProjectDonation272.Models.Sponsor
+﻿@model SDG_Education.Models.Core.Sponsor
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Delete</h2>
@@ -13,6 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.SponsorType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SponsorType.Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -21,59 +28,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.ContactNo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.ContactNo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PhysicalAddress)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhysicalAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContactNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfDelivery)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateOfDelivery)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Employee.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Employee.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SponsorType.SponsorTypeDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SponsorType.SponsorTypeDescription)
+            @Html.DisplayFor(model => model.Address)
         </dd>
 
     </dl>

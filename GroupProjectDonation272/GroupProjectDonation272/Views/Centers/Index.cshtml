@@ -1,26 +1,52 @@
-﻿@model IEnumerable<SDG_Education.Models.Core.Employee>
+﻿@model IEnumerable<SDG_Education.Models.Core.Center>
 
 @{
     ViewBag.Title = "Index";
 }
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<div class="row">
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Create","Centers")">
+            <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+
+                        <i class="fas fa-fw fa-plus-circle"></i>
+
+                    </div>
+                    <div class="mr-5">Add New Center</div>
+                </div>
+
+            </div>
+        </a>
+
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Index","CenterTypes")">
+            <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-archive"></i>
+                    </div>
+                    <div class="mr-5">Manage Center Types</div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+</div>
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Center.Name)
+                      Center Type
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Email)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Code)
@@ -31,8 +57,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Address)
                     </th>
-                    <th>Action</th>
-
+                    <th></th>
                 </tr>
             </thead>
             <body>
@@ -40,13 +65,10 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Center.Name)
+                            @Html.DisplayFor(modelItem => item.CenterType.Name)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Code)

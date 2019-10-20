@@ -1,11 +1,10 @@
-﻿@model GroupProjectDonation272.Models.Donee
+﻿@model SDG_Education.Models.Core.Donee
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details for a Donee</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Donee</h4>
@@ -20,33 +19,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PhysicalAddress)
+            @Html.DisplayNameFor(model => model.ContactNo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhysicalAddress)
+            @Html.DisplayFor(model => model.ContactNo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ContactNumber)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ContactNumber)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Donation.DonationName)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Donation.DonationName)
+            @Html.DisplayFor(model => model.Address)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DoneeID }) |
-    @Html.ActionLink("Ba  @Html.ActionLink("Back to List", "Index")ck to List", "Index")
-    
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

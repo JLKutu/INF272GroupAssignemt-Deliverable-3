@@ -1,8 +1,7 @@
-﻿@model GroupProjectDonation272.Models.Stationary
+﻿@model SDG_Education.Models.Core.Stationary
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -12,40 +11,24 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.StationaryDescription)
+            @Html.DisplayNameFor(model => model.StationaryType.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StationaryDescription)
+            @Html.DisplayFor(model => model.StationaryType.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Donation.DonationName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Donation.DonationName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SponsorType.SponsorTypeDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SponsorType.SponsorTypeDescription)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StationaryID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
