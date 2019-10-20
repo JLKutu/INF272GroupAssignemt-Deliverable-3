@@ -11,112 +11,112 @@ using SDG_Education.Models.Core;
 
 namespace SDG_Education.Controllers
 {
-    public class BooksController : Controller
+    public class CentersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Books
+        // GET: Centers
         public ActionResult Index()
         {
-            var books = db.Books.Include(b => b.BookType);
-            return View(books.ToList());
+            var centers = db.Centers.Include(c => c.CenterType);
+            return View(centers.ToList());
         }
 
-        // GET: Books/Details/5
+        // GET: Centers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
+            Center center = db.Centers.Find(id);
+            if (center == null)
             {
                 return HttpNotFound();
             }
-            return View(book);
+            return View(center);
         }
 
-        // GET: Books/Create
+        // GET: Centers/Create
         public ActionResult Create()
         {
-            ViewBag.BookTypeId = new SelectList(db.BookTypes, "Id", "Name");
+            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name");
             return View();
         }
 
-        // POST: Books/Create
+        // POST: Centers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Author,Edition,Publisher,Year,BookTypeId")] Book book)
+        public ActionResult Create([Bind(Include = "Id,Name,Code,ContactNo,Address,CenterTypeId")] Center center)
         {
             if (ModelState.IsValid)
             {
-                db.Books.Add(book);
+                db.Centers.Add(center);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookTypeId = new SelectList(db.BookTypes, "Id", "Name", book.BookTypeId);
-            return View(book);
+            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name", center.CenterTypeId);
+            return View(center);
         }
 
-        // GET: Books/Edit/5
+        // GET: Centers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
+            Center center = db.Centers.Find(id);
+            if (center == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BookTypeId = new SelectList(db.BookTypes, "Id", "Name", book.BookTypeId);
-            return View(book);
+            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name", center.CenterTypeId);
+            return View(center);
         }
 
-        // POST: Books/Edit/5
+        // POST: Centers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Author,Edition,Publisher,Year,BookTypeId")] Book book)
+        public ActionResult Edit([Bind(Include = "Id,Name,Code,ContactNo,Address,CenterTypeId")] Center center)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(book).State = EntityState.Modified;
+                db.Entry(center).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BookTypeId = new SelectList(db.BookTypes, "Id", "Name", book.BookTypeId);
-            return View(book);
+            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name", center.CenterTypeId);
+            return View(center);
         }
 
-        // GET: Books/Delete/5
+        // GET: Centers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
+            Center center = db.Centers.Find(id);
+            if (center == null)
             {
                 return HttpNotFound();
             }
-            return View(book);
+            return View(center);
         }
 
-        // POST: Books/Delete/5
+        // POST: Centers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Book book = db.Books.Find(id);
-            db.Books.Remove(book);
+            Center center = db.Centers.Find(id);
+            db.Centers.Remove(center);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

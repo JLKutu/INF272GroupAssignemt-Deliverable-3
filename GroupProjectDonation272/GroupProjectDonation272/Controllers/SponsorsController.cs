@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GroupProjectDonation272.Models;
+using SDG_Education.Models;
+using SDG_Education.Models.Core;
 
-namespace GroupProjectDonation272.Controllers
+namespace SDG_Education.Controllers
 {
     public class SponsorsController : Controller
     {
-        private DonationFinalEntities db = new DonationFinalEntities();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Sponsors
         public ActionResult Index()
         {
-            var sponsors = db.Sponsors.Include(s => s.Employee).Include(s => s.SponsorType);
+            var sponsors = db.Sponsors.Include(s => s.SponsorType);
             return View(sponsors.ToList());
         }
 
@@ -39,17 +40,16 @@ namespace GroupProjectDonation272.Controllers
         // GET: Sponsors/Create
         public ActionResult Create()
         {
-            ViewBag.SponsorID = new SelectList(db.Employees, "EmployeeID", "Name");
-            ViewBag.SponsorID = new SelectList(db.SponsorTypes, "SponsorTypeID", "SponsorTypeDescription");
+            ViewBag.SponsorTypeId = new SelectList(db.SponsorTypes, "Id", "Name");
             return View();
         }
 
         // POST: Sponsors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SponsorID,Name,Surname,EmailAddress,PhysicalAddress,ContactNumber,DateOfDelivery")] Sponsor sponsor)
+        public ActionResult Create([Bind(Include = "Id,Name,ContactNo,Email,Address,SponsorTypeId")] Sponsor sponsor)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +58,7 @@ namespace GroupProjectDonation272.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SponsorID = new SelectList(db.Employees, "EmployeeID", "Name", sponsor.SponsorID);
-            ViewBag.SponsorID = new SelectList(db.SponsorTypes, "SponsorTypeID", "SponsorTypeDescription", sponsor.SponsorID);
+            ViewBag.SponsorTypeId = new SelectList(db.SponsorTypes, "Id", "Name", sponsor.SponsorTypeId);
             return View(sponsor);
         }
 
@@ -75,17 +74,16 @@ namespace GroupProjectDonation272.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SponsorID = new SelectList(db.Employees, "EmployeeID", "Name", sponsor.SponsorID);
-            ViewBag.SponsorID = new SelectList(db.SponsorTypes, "SponsorTypeID", "SponsorTypeDescription", sponsor.SponsorID);
+            ViewBag.SponsorTypeId = new SelectList(db.SponsorTypes, "Id", "Name", sponsor.SponsorTypeId);
             return View(sponsor);
         }
 
         // POST: Sponsors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SponsorID,Name,Surname,EmailAddress,PhysicalAddress,ContactNumber,DateOfDelivery")] Sponsor sponsor)
+        public ActionResult Edit([Bind(Include = "Id,Name,ContactNo,Email,Address,SponsorTypeId")] Sponsor sponsor)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +91,7 @@ namespace GroupProjectDonation272.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SponsorID = new SelectList(db.Employees, "EmployeeID", "Name", sponsor.SponsorID);
-            ViewBag.SponsorID = new SelectList(db.SponsorTypes, "SponsorTypeID", "SponsorTypeDescription", sponsor.SponsorID);
+            ViewBag.SponsorTypeId = new SelectList(db.SponsorTypes, "Id", "Name", sponsor.SponsorTypeId);
             return View(sponsor);
         }
 

@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using GroupProjectDonation272.Models;
+using SDG_Education.Models;
 
-namespace GroupProjectDonation272.Controllers
+namespace SDG_Education.Controllers
 {
     [Authorize]
     public class ManageController : Controller

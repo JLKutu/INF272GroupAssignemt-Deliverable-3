@@ -6,21 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GroupProjectDonation272.Models;
+using SDG_Education.Models;
+using SDG_Education.Models.Core;
 
-namespace GroupProjectDonation272.Controllers
+namespace SDG_Education.Controllers
 {
     public class DoneesController : Controller
     {
-        private DonationFinalEntities db = new DonationFinalEntities();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Donees
         public ActionResult Index()
         {
-            var donees = db.Donees.Include(d => d.Donation);
-            var donees=db.Donees.OrderByDesceding(d=>d.Doation);
-            var donees=db.Donee.OrderBy(d=>d.DonationID);
-            return View(donees.ToList());
+            return View(db.Donees.ToList());
         }
 
         // GET: Donees/Details/5
@@ -41,16 +39,15 @@ namespace GroupProjectDonation272.Controllers
         // GET: Donees/Create
         public ActionResult Create()
         {
-            ViewBag.DoneeID = new SelectList(db.Donations, "DonationID", "DonationName");
             return View();
         }
 
         // POST: Donees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DoneeID,Name,PhysicalAddress,ContactNumber")] Donee donee)
+        public ActionResult Create([Bind(Include = "Id,Name,ContactNo,Email,Address")] Donee donee)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +56,6 @@ namespace GroupProjectDonation272.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DoneeID = new SelectList(db.Donations, "DonationID", "DonationName", donee.DoneeID);
             return View(donee);
         }
 
@@ -75,16 +71,15 @@ namespace GroupProjectDonation272.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DoneeID = new SelectList(db.Donations, "DonationID", "DonationName", donee.DoneeID);
             return View(donee);
         }
 
         // POST: Donees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DoneeID,Name,PhysicalAddress,ContactNumber")] Donee donee)
+        public ActionResult Edit([Bind(Include = "Id,Name,ContactNo,Email,Address")] Donee donee)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +87,6 @@ namespace GroupProjectDonation272.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DoneeID = new SelectList(db.Donations, "DonationID", "DonationName", donee.DoneeID);
             return View(donee);
         }
 

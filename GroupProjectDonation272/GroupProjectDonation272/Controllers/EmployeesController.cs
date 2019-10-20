@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GroupProjectDonation272.Models;
+using SDG_Education.Models;
+using SDG_Education.Models.Core;
 
-namespace GroupProjectDonation272.Controllers
+namespace SDG_Education.Controllers
 {
     public class EmployeesController : Controller
     {
-        private DonationFinalEntities db = new DonationFinalEntities();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Employees
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Donation).Include(e => e.Sponsor).Include(e => e.User);
+            var employees = db.Employees.Include(e => e.Center);
             return View(employees.ToList());
         }
 
@@ -39,18 +40,16 @@ namespace GroupProjectDonation272.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeeID = new SelectList(db.Donations, "DonationID", "DonationName");
-            ViewBag.EmployeeID = new SelectList(db.Sponsors, "SponsorID", "Name");
-            ViewBag.EmployeeID = new SelectList(db.Users, "UserID", "Username");
+            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name");
             return View();
         }
 
         // POST: Employees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,Name,Surname,EmailAddress,PhysicalAddress,ContactNumber")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Email,Code,ContactNo,Address,CenterId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -59,9 +58,7 @@ namespace GroupProjectDonation272.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeID = new SelectList(db.Donations, "DonationID", "DonationName", employee.EmployeeID);
-            ViewBag.EmployeeID = new SelectList(db.Sponsors, "SponsorID", "Name", employee.EmployeeID);
-            ViewBag.EmployeeID = new SelectList(db.Users, "UserID", "Username", employee.EmployeeID);
+            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", employee.CenterId);
             return View(employee);
         }
 
@@ -77,18 +74,16 @@ namespace GroupProjectDonation272.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeeID = new SelectList(db.Donations, "DonationID", "DonationName", employee.EmployeeID);
-            ViewBag.EmployeeID = new SelectList(db.Sponsors, "SponsorID", "Name", employee.EmployeeID);
-            ViewBag.EmployeeID = new SelectList(db.Users, "UserID", "Username", employee.EmployeeID);
+            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", employee.CenterId);
             return View(employee);
         }
 
         // POST: Employees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeID,Name,Surname,EmailAddress,PhysicalAddress,ContactNumber")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Email,Code,ContactNo,Address,CenterId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -96,9 +91,7 @@ namespace GroupProjectDonation272.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeeID = new SelectList(db.Donations, "DonationID", "DonationName", employee.EmployeeID);
-            ViewBag.EmployeeID = new SelectList(db.Sponsors, "SponsorID", "Name", employee.EmployeeID);
-            ViewBag.EmployeeID = new SelectList(db.Users, "UserID", "Username", employee.EmployeeID);
+            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", employee.CenterId);
             return View(employee);
         }
 
