@@ -1,0 +1,119 @@
+﻿@model IEnumerable<SDG_Education.Models.Core.Operations.ReceiveDonationDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Create", "ReceiveDonationDetails")">
+            <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-comments"></i>
+                    </div>
+                    <div class="mr-5"> Add Donation Item</div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Index", "ReceiveDonationDetails")">
+            <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-list"></i>
+                    </div>
+                    <div class="mr-5">Manage Donations</div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+    @*<div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Create", "Books")">
+            <div class="card text-white bg-success o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-shopping-cart"></i>
+                    </div>
+                    <div class="mr-5">Give Donation</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Index", "Sponsors")">
+            <div class="card text-white bg-danger o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-life-ring"></i>
+                    </div>
+                    <div class="mr-5">Manage Sponsors</div>
+                </div>
+            </div>
+        </a>
+    </div>*@
+
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReceiveDonation.ReceiveDonationReference)
+                    </th>
+
+                    <th>
+                        Item
+                    </th>
+
+                    <th>
+                        Total Donated
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <body>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReceiveDonation.ReceiveDonationReference)
+                        </td>
+                        @if (item.BookId != null)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Book.Title)
+                            </td>
+
+                        }
+                        @if (item.StationaryId != null)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationary.Name)
+                            </td>
+                        }
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </body>
+        </table>
+    </div>
+</div>
