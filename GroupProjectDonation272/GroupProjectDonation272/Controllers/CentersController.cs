@@ -1,17 +1,27 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using GroupProjectDonation272.Models;
+using GroupProjectDonation272.Models.Core;
 
 namespace GroupProjectDonation272.Controllers
 {
     public class CentersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+
+        private ApplicationDbContext _db = new ApplicationDbContext();
+        private bool _status;
+        private int _start;
+        private int _id;
+
 
         // GET: Centers
         public ActionResult Index()
         {
-            var centers = db.Centers.Include(c => c.CenterType);
+            var centers = _db.Centers.Include(c => c.CenterType);
             return View(centers.ToList());
         }
 
@@ -22,7 +32,7 @@ namespace GroupProjectDonation272.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Center center = db.Centers.Find(id);
+            Center center = _db.Centers.Find(id);
             if (center == null)
             {
                 return HttpNotFound();
@@ -33,7 +43,8 @@ namespace GroupProjectDonation272.Controllers
         // GET: Centers/Create
         public ActionResult Create()
         {
-            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name");
+            ViewBag.Code = GenerateAutoCode();
+            ViewBag.CenterTypeId = new SelectList(_db.CenterTypes, "Id", "Name");
             return View();
         }
 
@@ -46,12 +57,12 @@ namespace GroupProjectDonation272.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Centers.Add(center);
-                db.SaveChanges();
+                _db.Centers.Add(center);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name", center.CenterTypeId);
+            ViewBag.Code = GenerateAutoCode();
+            ViewBag.CenterTypeId = new SelectList(_db.CenterTypes, "Id", "Name", center.CenterTypeId);
             return View(center);
         }
 
@@ -62,12 +73,13 @@ namespace GroupProjectDonation272.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Center center = db.Centers.Find(id);
+            Center center = _db.Centers.Find(id);
             if (center == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name", center.CenterTypeId);
+            ViewBag.Code = GenerateAutoCode();
+            ViewBag.CenterTypeId = new SelectList(_db.CenterTypes, "Id", "Name", center.CenterTypeId);
             return View(center);
         }
 
@@ -80,11 +92,11 @@ namespace GroupProjectDonation272.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(center).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(center).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CenterTypeId = new SelectList(db.CenterTypes, "Id", "Name", center.CenterTypeId);
+            ViewBag.CenterTypeId = new SelectList(_db.CenterTypes, "Id", "Name", center.CenterTypeId);
             return View(center);
         }
 
@@ -95,7 +107,7 @@ namespace GroupProjectDonation272.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Center center = db.Centers.Find(id);
+            Center center = _db.Centers.Find(id);
             if (center == null)
             {
                 return HttpNotFound();
@@ -108,9 +120,9 @@ namespace GroupProjectDonation272.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Center center = db.Centers.Find(id);
-            db.Centers.Remove(center);
-            db.SaveChanges();
+            Center center = _db.Centers.Find(id);
+            _db.Centers.Remove(center);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -118,9 +130,27 @@ namespace GroupProjectDonation272.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public string GenerateAutoCode()
+        {
+            var autoCode = "";
+            var lastCode = _db.OfferDonations.Max(item => item.OfferDonationReference);
+
+            if (lastCode != null)
+            {
+                var resultString = Regex.Match(lastCode, @"\d+").Value;
+                _start = Int32.Parse(resultString);
+
+                autoCode = "CenterNo:" + (_start + 1).ToString("000");
+            }
+            autoCode = "CenterNo" + (_start + 1).ToString("000");
+
+            return autoCode;
         }
     }
 }

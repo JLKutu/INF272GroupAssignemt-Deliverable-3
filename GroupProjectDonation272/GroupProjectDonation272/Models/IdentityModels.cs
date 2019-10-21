@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using GroupProjectDonation272.Models.Core;
+using GroupProjectDonation272.Models.Core.Operations;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -37,6 +39,14 @@ namespace GroupProjectDonation272.Models
 
 
 
+        public DbSet<BookDonation> BookDonations { get; set; }
+        public DbSet<StationaryDonation> StationaryDonations { get; set; }
+        public DbSet<OfferBook> OfferBooks { get; set; }
+        public DbSet<OfferStationary> OfferStationaries { get; set; }
+
+
+
+
 
 
         public ApplicationDbContext()
@@ -54,6 +64,23 @@ namespace GroupProjectDonation272.Models
             modelBuilder.Entity<OfferDonation>()
                 .HasRequired(d => d.Center)
                 .WithMany(w => w.OfferDonations)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BookDonation>()
+                .HasRequired(d => d.Center)
+                .WithMany(w => w.BookDonations)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<StationaryDonation>()
+                .HasRequired(d => d.Center)
+                .WithMany(w => w.StationaryDonations)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<OfferBook>()
+                .HasRequired(d => d.Center)
+                .WithMany(w => w.OfferBooks)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<OfferStationary>()
+                .HasRequired(d => d.Center)
+                .WithMany(w => w.OfferStationaries)
                 .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

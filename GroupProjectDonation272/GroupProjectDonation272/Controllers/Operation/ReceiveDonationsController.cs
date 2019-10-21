@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
-using SDG_Education.Models;
-using SDG_Education.Models.Core.Operations;
+using GroupProjectDonation272.Models;
+using GroupProjectDonation272.Models.Core.Operations;
 
-namespace SDG_Education.Controllers
+namespace GroupProjectDonation272.Controllers.Operation
 {
     public class ReceiveDonationsController : Controller
     {
@@ -65,7 +62,7 @@ namespace SDG_Education.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Reference = GenerateAutoCode();
             ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name", receiveDonation.CenterId);
             ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Name", receiveDonation.EmployeeId);
             ViewBag.SponsorId = new SelectList(_db.Sponsors, "Id", "Name", receiveDonation.SponsorId);
@@ -98,6 +95,7 @@ namespace SDG_Education.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( ReceiveDonation receiveDonation)
         {
+            receiveDonation.IsDeleted = false;
             //[Bind(Include = "Id,IsDeleted,ReceiveDonationReference,DonationDate,Remarks,CenterId,EmployeeId,SponsorId")]
             if (ModelState.IsValid)
             {
@@ -149,7 +147,7 @@ namespace SDG_Education.Controllers
         }
 
 
-        public object GenerateAutoCode()
+        public string GenerateAutoCode()
         {
             var autoCode = "";
             var lastCode = _db.ReceiveDonations.Max(item => item.ReceiveDonationReference);
@@ -159,9 +157,9 @@ namespace SDG_Education.Controllers
                 var resultString = Regex.Match(lastCode, @"\d+").Value;
                 _start = Int32.Parse(resultString);
 
-                autoCode = "Donation" + (_start + 1).ToString("000");
+                autoCode = "ReceiveNo" + (_start + 1).ToString("000");
             }
-            autoCode = "Donation" + (_start + 1).ToString("000");
+            autoCode = "ReceiveNo" + (_start + 1).ToString("000");
 
             return autoCode;
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SDG_Education.Models.Core.Operations
+namespace GroupProjectDonation272.Models.Core.Operations
 {
     /// <summary>
     /// Represents the donations given to Donees by the center
@@ -27,7 +27,7 @@ namespace SDG_Education.Models.Core.Operations
         public int CenterId { get; set; }
         public virtual Center Center { get; set; }
 
-      
+
 
         [Display(Name = "Employee")]
         public int EmployeeId { get; set; }

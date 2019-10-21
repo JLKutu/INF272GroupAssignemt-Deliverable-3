@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SDG_Education.Models;
-using SDG_Education.Models.Core.Operations;
+using GroupProjectDonation272.Models;
+using GroupProjectDonation272.Models.Core.Operations;
 
-namespace SDG_Education.Controllers
+namespace GroupProjectDonation272.Controllers.Operation
 {
     public class ReceiveDonationDetailsController : Controller
     {
@@ -53,6 +49,7 @@ namespace SDG_Education.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ReceiveDonationDetail receiveDonationDetail)
         {
+           
             receiveDonationDetail.IsDeleted = false;
             if (ModelState.IsValid)
             {
@@ -70,6 +67,7 @@ namespace SDG_Education.Controllers
         // GET: ReceiveDonationDetails/Edit/5
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -90,8 +88,9 @@ namespace SDG_Education.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IsDeleted,Quantity,StationaryId,BookId,ReceiveDonationId")] ReceiveDonationDetail receiveDonationDetail)
+        public ActionResult Edit(ReceiveDonationDetail receiveDonationDetail)
         {
+            receiveDonationDetail.IsDeleted = false;
             if (ModelState.IsValid)
             {
                 db.Entry(receiveDonationDetail).State = EntityState.Modified;

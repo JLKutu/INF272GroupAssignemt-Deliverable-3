@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SDG_Education.Models.Core.Operations.OfferBook>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Create","OfferBooks")">
+            <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+
+                        <i class="fas fa-fw fa-plus-circle"></i>
+
+                    </div>
+                    <div class="mr-5">Offer Book Donation</div>
+                </div>
+
+            </div>
+        </a>
+
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Index","BookDonations")">
+            <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-archive"></i>
+                    </div>
+                    <div class="mr-5">Manage Book Donation</div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+
+                    <th>
+                        Center
+                    </th>
+                    <th>
+                       Donee Name
+                    </th>
+                    <th>
+                       Employee Name
+                    </th>
+                    <th>
+                       Book Title
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DonationDate)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Center.Name)
+                    </td>
+                   
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Donee.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookDonation.BookTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonationDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

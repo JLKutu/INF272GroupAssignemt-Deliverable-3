@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using GroupProjectDonation272.Models.Core.Operations;
 
 namespace GroupProjectDonation272.Models.Core
 {
@@ -8,11 +9,13 @@ namespace GroupProjectDonation272.Models.Core
         public Employee()
         {
             OfferDonations = new List<OfferDonation>();
-            ReceiveDonations= new List<ReceiveDonation>();
+            ReceiveDonations = new List<ReceiveDonation>();
+            OfferBooks = new List<OfferBook>();
+            OfferStationaries = new List<OfferStationary>(); ;
         }
         public int Id { get; set; }
         public string Name { get; set; }
-       
+
         [Required]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
@@ -32,5 +35,7 @@ namespace GroupProjectDonation272.Models.Core
 
         public virtual List<OfferDonation> OfferDonations { get; set; }
         public virtual List<ReceiveDonation> ReceiveDonations { get; set; }
+        public virtual List<OfferBook> OfferBooks { get; set; }
+        public virtual List<OfferStationary> OfferStationaries { get; set; }
     }
 }

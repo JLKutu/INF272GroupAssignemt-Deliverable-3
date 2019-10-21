@@ -1,6 +1,9 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using GroupProjectDonation272.Models;
+using GroupProjectDonation272.Models.Core;
 
 namespace GroupProjectDonation272.Controllers
 {
@@ -11,7 +14,8 @@ namespace GroupProjectDonation272.Controllers
         // GET: Donees
         public ActionResult Index()
         {
-            return View(db.Donees.ToList());
+            var donee = db.Donees.Include(d => d.OfferDonations);
+            return View(donee.ToList());
         }
 
         // GET: Donees/Details/5

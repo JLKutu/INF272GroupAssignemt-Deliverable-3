@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GroupProjectDonation272.Models.Core
 {
@@ -7,7 +6,7 @@ namespace GroupProjectDonation272.Models.Core
     {
         public BookType()
         {
-           Books = new List<Book>();
+            Books = new List<Book>();
         }
 
         public int Id { get; set; }

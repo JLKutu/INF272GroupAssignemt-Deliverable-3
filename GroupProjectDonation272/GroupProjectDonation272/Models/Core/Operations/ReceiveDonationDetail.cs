@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SDG_Education.Models.Core.Operations
+namespace GroupProjectDonation272.Models.Core.Operations
 {
     public class ReceiveDonationDetail
     {

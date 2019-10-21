@@ -14,7 +14,7 @@ namespace GroupProjectDonation272.Models.Core
 
         public string Description { get; set; }
 
-     
+
         public virtual List<Stationary> Stationaries { get; set; }
 
     }

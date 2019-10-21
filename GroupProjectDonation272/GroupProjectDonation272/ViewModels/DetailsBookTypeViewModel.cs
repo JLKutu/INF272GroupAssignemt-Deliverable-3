@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using SDG_Education.Models.Core;
+using GroupProjectDonation272.Models.Core;
+
 
 namespace SDG_Education.ViewModels
 {

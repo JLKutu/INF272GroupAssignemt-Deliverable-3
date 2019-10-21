@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using GroupProjectDonation272.Models.Core.Operations;
 
 namespace GroupProjectDonation272.Models.Core
 {
@@ -8,6 +9,8 @@ namespace GroupProjectDonation272.Models.Core
         public Sponsor()
         {
             ReceiveDonations = new List<ReceiveDonation>();
+            BookDonations = new List<BookDonation>();
+            StationaryDonations  = new List<StationaryDonation>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -25,5 +28,7 @@ namespace GroupProjectDonation272.Models.Core
         public int SponsorTypeId { get; set; }
         public virtual SponsorType SponsorType { get; set; }
         public virtual List<ReceiveDonation> ReceiveDonations { get; set; }
+        public virtual List<BookDonation> BookDonations { get; set; }
+        public virtual List<StationaryDonation> StationaryDonations { get; set; }
     }
 }

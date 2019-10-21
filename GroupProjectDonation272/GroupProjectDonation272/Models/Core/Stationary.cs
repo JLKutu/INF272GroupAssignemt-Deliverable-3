@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using GroupProjectDonation272.Models.Core.Operations;
 
 namespace GroupProjectDonation272.Models.Core
 {
@@ -14,7 +15,7 @@ namespace GroupProjectDonation272.Models.Core
         public string Name { get; set; }
 
         //Relationship
-        [Display(Name="Stationary Type Name")]
+        [Display(Name = "Stationary Type Name")]
         public int StationaryTypeId { get; set; }
         public virtual StationaryType StationaryType { get; set; }
 

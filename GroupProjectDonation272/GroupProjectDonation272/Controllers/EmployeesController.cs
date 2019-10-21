@@ -1,17 +1,25 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using GroupProjectDonation272.Models;
+using GroupProjectDonation272.Models.Core;
 
 namespace GroupProjectDonation272.Controllers
 {
     public class EmployeesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext _db = new ApplicationDbContext();
+        private bool _status;
+        private int _start;
+        private int _id;
 
         // GET: Employees
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Center);
+            var employees = _db.Employees.Include(e => e.Center);
             return View(employees.ToList());
         }
 
@@ -22,7 +30,7 @@ namespace GroupProjectDonation272.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = _db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -33,7 +41,8 @@ namespace GroupProjectDonation272.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name");
+            ViewBag.Code = GenerateAutoCode();
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name");
             return View();
         }
 
@@ -46,12 +55,12 @@ namespace GroupProjectDonation272.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
-                db.SaveChanges();
+                _db.Employees.Add(employee);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", employee.CenterId);
+            ViewBag.Code = GenerateAutoCode();
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name", employee.CenterId);
             return View(employee);
         }
 
@@ -62,12 +71,12 @@ namespace GroupProjectDonation272.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = _db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", employee.CenterId);
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name", employee.CenterId);
             return View(employee);
         }
 
@@ -80,11 +89,12 @@ namespace GroupProjectDonation272.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(employee).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", employee.CenterId);
+            ViewBag.Code = GenerateAutoCode();
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name", employee.CenterId);
             return View(employee);
         }
 
@@ -95,7 +105,7 @@ namespace GroupProjectDonation272.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = _db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -108,9 +118,9 @@ namespace GroupProjectDonation272.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
+            Employee employee = _db.Employees.Find(id);
+            _db.Employees.Remove(employee);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -118,9 +128,28 @@ namespace GroupProjectDonation272.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
+
+
+        public string GenerateAutoCode()
+        {
+            var autoCode = "";
+            var lastCode = _db.OfferDonations.Max(item => item.OfferDonationReference);
+
+            if (lastCode != null)
+            {
+                var resultString = Regex.Match(lastCode, @"\d+").Value;
+                _start = Int32.Parse(resultString);
+
+                autoCode = "Emp" + (_start + 1).ToString("000");
+            }
+            autoCode = "Emp" + (_start + 1).ToString("000");
+
+            return autoCode;
+        }
+
     }
 }

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SDG_Education.Models.Core.Operations.StationaryDonation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Create","StationaryDonations")">
+            <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+
+                        <i class="fas fa-fw fa-plus-circle"></i>
+
+                    </div>
+                    <div class="mr-5">Make New Donation</div>
+                </div>
+
+            </div>
+        </a>
+
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Index","OfferDonations")">
+            <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-archive"></i>
+                    </div>
+                    <div class="mr-5">View Offered Donations</div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+
+                    <th>
+                        Sponsor Name
+                    </th>
+                    <th>
+                        Center Name
+                    </th>
+                    <th>
+                        Stationary Type
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sponsor.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Center.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StationaryType.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

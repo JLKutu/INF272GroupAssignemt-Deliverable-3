@@ -1,24 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using SDG_Education.Models;
-using SDG_Education.Models.Core.Operations;
+using GroupProjectDonation272.Models;
+using GroupProjectDonation272.Models.Core.Operations;
 
-namespace SDG_Education.Controllers
+namespace GroupProjectDonation272.Controllers.Operation
 {
     public class OfferDonationsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext _db = new ApplicationDbContext();
+        private bool _status;
+        private int _start;
+        private int _id;
+
 
         // GET: OfferDonations
         public ActionResult Index()
         {
-            var offerDonations = db.OfferDonations.Include(o => o.Center).Include(o => o.Donee).Include(o => o.Employee);
+            var offerDonations = _db.OfferDonations.Include(o => o.Center).Include(o => o.Donee).Include(o => o.Employee);
             return View(offerDonations.ToList());
         }
 
@@ -29,7 +31,7 @@ namespace SDG_Education.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OfferDonation offerDonation = db.OfferDonations.Find(id);
+            OfferDonation offerDonation = _db.OfferDonations.Find(id);
             if (offerDonation == null)
             {
                 return HttpNotFound();
@@ -40,9 +42,10 @@ namespace SDG_Education.Controllers
         // GET: OfferDonations/Create
         public ActionResult Create()
         {
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name");
-            ViewBag.DoneeId = new SelectList(db.Donees, "Id", "Name");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
+            ViewBag.Reference = GenerateAutoCode();
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name");
+            ViewBag.DoneeId = new SelectList(_db.Donees, "Id", "Name");
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Name");
             return View();
         }
 
@@ -51,18 +54,21 @@ namespace SDG_Education.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IsDeleted,OfferDonationReference,DonationDate,CenterId,EmployeeId,DoneeId")] OfferDonation offerDonation)
+        public ActionResult Create(OfferDonation offerDonation)
         {
+            //[Bind(Include = "Id,IsDeleted,OfferDonationReference,DonationDate,CenterId,EmployeeId,DoneeId")] 
+            offerDonation.IsDeleted = false;
+           
             if (ModelState.IsValid)
             {
-                db.OfferDonations.Add(offerDonation);
-                db.SaveChanges();
+                _db.OfferDonations.Add(offerDonation);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", offerDonation.CenterId);
-            ViewBag.DoneeId = new SelectList(db.Donees, "Id", "Name", offerDonation.DoneeId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", offerDonation.EmployeeId);
+            ViewBag.Reference = GenerateAutoCode();
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name", offerDonation.CenterId);
+            ViewBag.DoneeId = new SelectList(_db.Donees, "Id", "Name", offerDonation.DoneeId);
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Name", offerDonation.EmployeeId);
             return View(offerDonation);
         }
 
@@ -73,14 +79,15 @@ namespace SDG_Education.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OfferDonation offerDonation = db.OfferDonations.Find(id);
+            OfferDonation offerDonation = _db.OfferDonations.Find(id);
             if (offerDonation == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", offerDonation.CenterId);
-            ViewBag.DoneeId = new SelectList(db.Donees, "Id", "Name", offerDonation.DoneeId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", offerDonation.EmployeeId);
+            ViewBag.Reference = GenerateAutoCode();
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name", offerDonation.CenterId);
+            ViewBag.DoneeId = new SelectList(_db.Donees, "Id", "Name", offerDonation.DoneeId);
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Name", offerDonation.EmployeeId);
             return View(offerDonation);
         }
 
@@ -93,13 +100,14 @@ namespace SDG_Education.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(offerDonation).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(offerDonation).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CenterId = new SelectList(db.Centers, "Id", "Name", offerDonation.CenterId);
-            ViewBag.DoneeId = new SelectList(db.Donees, "Id", "Name", offerDonation.DoneeId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", offerDonation.EmployeeId);
+            ViewBag.Reference = GenerateAutoCode();
+            ViewBag.CenterId = new SelectList(_db.Centers, "Id", "Name", offerDonation.CenterId);
+            ViewBag.DoneeId = new SelectList(_db.Donees, "Id", "Name", offerDonation.DoneeId);
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Name", offerDonation.EmployeeId);
             return View(offerDonation);
         }
 
@@ -110,7 +118,7 @@ namespace SDG_Education.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OfferDonation offerDonation = db.OfferDonations.Find(id);
+            OfferDonation offerDonation = _db.OfferDonations.Find(id);
             if (offerDonation == null)
             {
                 return HttpNotFound();
@@ -123,9 +131,9 @@ namespace SDG_Education.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            OfferDonation offerDonation = db.OfferDonations.Find(id);
-            db.OfferDonations.Remove(offerDonation);
-            db.SaveChanges();
+            OfferDonation offerDonation = _db.OfferDonations.Find(id);
+            _db.OfferDonations.Remove(offerDonation);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -133,9 +141,31 @@ namespace SDG_Education.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
+
+        public string GenerateAutoCode()
+        {
+            var autoCode = "";
+            var lastCode = _db.OfferDonations.Max(item => item.OfferDonationReference);
+
+            if (lastCode != null)
+            {
+                var resultString = Regex.Match(lastCode, @"\d+").Value;
+                _start = Int32.Parse(resultString);
+
+                autoCode = "OfferNo" + (_start + 1).ToString("000");
+            }
+            autoCode = "OfferNo" + (_start + 1).ToString("000");
+
+            return autoCode;
+        }
+
+
+       
+
+
     }
 }

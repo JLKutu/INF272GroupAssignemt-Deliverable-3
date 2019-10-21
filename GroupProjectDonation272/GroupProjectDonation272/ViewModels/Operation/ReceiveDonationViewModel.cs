@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using SDG_Education.DAL;
-using SDG_Education.Models.Core;
-using SDG_Education.Models.Core.Operations;
+using GroupProjectDonation272.Models.Core;
+using GroupProjectDonation272.Models.Core.Operations;
+
 
 namespace SDG_Education.ViewModels.Operation
 {

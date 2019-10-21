@@ -4,54 +4,94 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Book.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OfferDonation.OfferDonationReference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stationary.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th></th>
-    </tr>
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Create", "OfferDonationDetails")">
+            <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-comments"></i>
+                    </div>
+                    <div class="mr-5"> Add Donation Item</div>
+                </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Book.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OfferDonation.OfferDonationReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stationary.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            </div>
+        </a>
+    </div>
 
-</table>
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <a class="text-white clearfix small z-1" href="@Url.Action("Index", "OfferDonations")">
+            <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-list"></i>
+                    </div>
+                    <div class="mr-5">Manage Donations</div>
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OfferDonation.OfferDonationReference)
+                    </th>
+
+                    <th>
+                        Item
+                    </th>
+
+                    <th>
+                       Quantity
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <body>
+                @foreach (var item in Model)
+                {
+                    @*@Html.DisplayFor(modelItem => item.OfferDonation.OfferDonationReference)*@
+                    var donationReference = item.OfferDonation.OfferDonationReference;
+                    <tr>
+
+                        <td>
+
+                            @Html.ActionLink(donationReference,"Index","OfferDonations")
+                        </td>
+                        @if (item.BookId != null)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Book.Title)
+                            </td>
+
+                        }
+                        @if (item.StationaryId != null)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationary.Name)
+                            </td>
+                        }
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </body>
+        </table>
+    </div>
+</div>

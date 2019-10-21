@@ -6,9 +6,24 @@
 
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <a class="text-white clearfix small z-1" href="@Url.Action("Create")">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+
+                            <i class="fas fa-fw fa-plus-circle"></i>
+
+                        </div>
+                        <div class="mr-5">Add New Donee</div>
+                    </div>
+
+                </div>
+            </a>
+
+        </div>
+    </div>
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -26,12 +41,16 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Address)
                     </th>
+                    <th>
+                       Donations Received
+                    </th>
                     <th>Action</th>
                 </tr>
             </thead>
             <body>
                 @foreach (var item in Model)
                 {
+                    var totalDonation = item.OfferDonations.Count + item.OfferBooks.Count + item.OfferStationaries.Count;
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
@@ -45,6 +64,10 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Address)
                         </td>
+                        <td>
+                            @totalDonation
+                        </td>
+                      
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                             @Html.ActionLink("Details", "Details", new { id = item.Id }) |

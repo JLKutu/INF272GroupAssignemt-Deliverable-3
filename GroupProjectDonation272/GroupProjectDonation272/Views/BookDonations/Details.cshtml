@@ -1,0 +1,82 @@
+﻿@model SDG_Education.Models.Core.Operations.BookDonation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookDonation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Center.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Center.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sponsor.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sponsor.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPublisher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPublisher)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookPublicationYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookPublicationYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

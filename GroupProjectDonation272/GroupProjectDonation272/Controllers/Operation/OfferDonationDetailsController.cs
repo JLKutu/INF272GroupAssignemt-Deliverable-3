@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SDG_Education.Models;
-using SDG_Education.Models.Core.Operations;
+using GroupProjectDonation272.Models;
+using GroupProjectDonation272.Models.Core.Operations;
 
-namespace SDG_Education.Controllers
+namespace GroupProjectDonation272.Controllers.Operation
 {
     public class OfferDonationDetailsController : Controller
     {
@@ -51,8 +47,12 @@ namespace SDG_Education.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IsDeleted,Quantity,StationaryId,BookId,OfferDonationId")] OfferDonationDetail offerDonationDetail)
+        public ActionResult Create(OfferDonationDetail offerDonationDetail)
         {
+            //[Bind(Include = "Id,IsDeleted,Quantity,StationaryId,BookId,OfferDonationId")]
+
+            offerDonationDetail.IsDeleted = false;
+
             if (ModelState.IsValid)
             {
                 db.OfferDonationDetails.Add(offerDonationDetail);
@@ -78,6 +78,7 @@ namespace SDG_Education.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.BookId = new SelectList(db.Books, "Id", "Title", offerDonationDetail.BookId);
             ViewBag.OfferDonationId = new SelectList(db.OfferDonations, "Id", "OfferDonationReference", offerDonationDetail.OfferDonationId);
             ViewBag.StationaryId = new SelectList(db.Stationaries, "Id", "Name", offerDonationDetail.StationaryId);
@@ -89,8 +90,12 @@ namespace SDG_Education.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IsDeleted,Quantity,StationaryId,BookId,OfferDonationId")] OfferDonationDetail offerDonationDetail)
+        public ActionResult Edit(OfferDonationDetail offerDonationDetail)
         {
+            //[Bind(Include = "Id,IsDeleted,Quantity,StationaryId,BookId,OfferDonationId")]
+
+
+            offerDonationDetail.IsDeleted = false;
             if (ModelState.IsValid)
             {
                 db.Entry(offerDonationDetail).State = EntityState.Modified;
