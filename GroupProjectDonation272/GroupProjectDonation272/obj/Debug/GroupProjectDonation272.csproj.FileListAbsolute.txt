@@ -208,3 +208,5 @@ C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Delivera
 C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.Migrations.InitialModel.resources
+C:\Users\User-PC\Desktop\INF 272 System 20-10-2019\INF272GroupAssignemt-Deliverable-3\GroupProjectDonation272\GroupProjectDonation272\obj\Debug\GroupProjectDonation272.csproj.GenerateResource.Cache
