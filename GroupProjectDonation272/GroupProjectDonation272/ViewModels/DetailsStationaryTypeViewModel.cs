@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using GroupProjectDonation272.Models.Core;
 
-
-namespace SDG_Education.ViewModels
+namespace GroupProjectDonation272.ViewModels
 {
     public class DetailsStationaryTypeViewModel
     {

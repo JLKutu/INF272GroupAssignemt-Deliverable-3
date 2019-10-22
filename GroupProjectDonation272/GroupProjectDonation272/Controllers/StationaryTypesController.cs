@@ -3,7 +3,7 @@ using System.Net;
 using System.Web.Mvc;
 using GroupProjectDonation272.Models;
 using GroupProjectDonation272.Models.Core;
-using SDG_Education.ViewModels;
+using GroupProjectDonation272.ViewModels;
 
 namespace GroupProjectDonation272.Controllers
 {
